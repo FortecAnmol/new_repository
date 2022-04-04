@@ -35,17 +35,17 @@ function Home() {
         for (const [key, value] of Object.entries(montharar)) {
             console.log(key, value);
             // eslint-disable-next-line no-loop-func
+
             $(".rmdp-header-values span:first-child").each(function(index) {
                 // alert(index + ": " +   $(this).text().replaceAll(',', ''));
                  if(key ==  $(this).text().replaceAll(',', '')){
                     dataa = key;
                  }
-              
+   
              }) 
           }
-     
-          //alert(data);
-           var array = [];
+        //   alert(dataa);
+          var array = [];
         $(".rmdp-selected .sd").each(function(index) {
             array.push($(this).text());
             //data += ' ' + $(this).text() + ',';
@@ -86,6 +86,7 @@ function Home() {
     
     $(document).on('click', '.date_selected', function () {
         $(this).hide();
+        $('.date_selectedmonth').hide();
         $('.selected-location').removeClass('active');
         $('.box3').fadeOut('1000');
         $('.box2').show();
