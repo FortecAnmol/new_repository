@@ -2085,4 +2085,12 @@ span.error-message {
     max-height: 5.5rem;
   }
 }
+
+.rmdp-panel {
+  display: none !important;
+}
+
+.rmdp-calendar {
+  border: none !important;
+}
 /*# sourceMappingURL=main.css.map */

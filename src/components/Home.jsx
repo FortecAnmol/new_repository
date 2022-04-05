@@ -26,7 +26,9 @@ function Home() {
 
     $(document).on('click', '.next', function () {
         var data = '';
-        var dataa ;
+        var dataa;
+        alert(dataa);
+
         if ($('.rmdp-selected').length == 2) {
             setShow(true);
             return false;
@@ -35,17 +37,34 @@ function Home() {
         for (const [key, value] of Object.entries(montharar)) {
             console.log(key, value);
             // eslint-disable-next-line no-loop-func
+
             $(".rmdp-header-values span:first-child").each(function(index) {
                 // alert(index + ": " +   $(this).text().replaceAll(',', ''));
                  if(key ==  $(this).text().replaceAll(',', '')){
                     dataa = key;
-                 }
-              
+                }
              }) 
           }
-     
-          //alert(data);
-           var array = [];
+          /*        ANMOL        */
+        var test = [];
+
+        $(".rmdp-panel-body li span").each(function(index) {
+
+            test.push($(this).text());
+
+        })  
+        test.forEach(function(i, idx, test){
+            if (idx === test.length - 1){ 
+               
+                data = test
+            }
+         });
+          /*        ANMOL        */
+
+
+
+        //   alert(dataa);
+          var array = [];
         $(".rmdp-selected .sd").each(function(index) {
             array.push($(this).text());
             //data += ' ' + $(this).text() + ',';
@@ -57,7 +76,9 @@ function Home() {
                 data = array
             }
          });
-         //alert(dataa);
+         
+        //  alert(array);
+        //  alert(dataa);
         $(".date_selectedmonth").text(dataa + ' :');
         $('.date_selectedmonth').show();
         $(".date_selected").text(data);
@@ -86,6 +107,7 @@ function Home() {
     
     $(document).on('click', '.date_selected', function () {
         $(this).hide();
+        $('.date_selectedmonth').hide();
         $('.selected-location').removeClass('active');
         $('.box3').fadeOut('1000');
         $('.box2').show();
