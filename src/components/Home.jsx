@@ -26,7 +26,9 @@ function Home() {
 
     $(document).on('click', '.next', function () {
         var data = '';
-        var dataa ;
+        var dataa;
+        alert(dataa);
+
         if ($('.rmdp-selected').length == 2) {
             setShow(true);
             return false;
@@ -40,10 +42,27 @@ function Home() {
                 // alert(index + ": " +   $(this).text().replaceAll(',', ''));
                  if(key ==  $(this).text().replaceAll(',', '')){
                     dataa = key;
-                 }
-   
+                }
              }) 
           }
+          /*        ANMOL        */
+        var test = [];
+
+        $(".rmdp-panel-body li span").each(function(index) {
+
+            test.push($(this).text());
+
+        })  
+        test.forEach(function(i, idx, test){
+            if (idx === test.length - 1){ 
+               
+                data = test
+            }
+         });
+          /*        ANMOL        */
+
+
+
         //   alert(dataa);
           var array = [];
         $(".rmdp-selected .sd").each(function(index) {
@@ -57,7 +76,9 @@ function Home() {
                 data = array
             }
          });
-         //alert(dataa);
+         
+        //  alert(array);
+        //  alert(dataa);
         $(".date_selectedmonth").text(dataa + ' :');
         $('.date_selectedmonth').show();
         $(".date_selected").text(data);
