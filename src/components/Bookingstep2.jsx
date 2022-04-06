@@ -1,5 +1,6 @@
 import React,{useState}from 'react';
-import { Calendar } from "react-multi-date-picker"
+import { Calendar } from "react-multi-date-picker";
+import DatePanel from "react-multi-date-picker/plugins/date_panel";
 
 import 'react-calendar/dist/Calendar.css';
 const list = [
@@ -61,7 +62,7 @@ function Bookingstep2() {
             <div className='app'>
                 <div className='calendar-container' id='booking-calendar'>
                    { /* <Calendar onChange={setDate} value={date} /> */}
-                   <Calendar multiple minDate={new Date().setDate(dd)}/>
+                   <Calendar multiple format="YYYY/(MMMM/DD)" plugins={[<DatePanel  />]} minDate={new Date().setDate(dd)}/>
                  </div>
                 <div className="row bottom_btns no-gutters mx-0">
                    <div className="col-6 pr-2"><button type="button" className="btn previous">Back</button></div>

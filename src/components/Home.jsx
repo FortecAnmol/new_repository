@@ -26,7 +26,9 @@ function Home() {
 
     $(document).on('click', '.next', function () {
         var data = '';
-        var dataa ;
+        var dataa;
+        // alert(dataa);
+
         if ($('.rmdp-selected').length == 2) {
             setShow(true);
             return false;
@@ -35,17 +37,80 @@ function Home() {
         for (const [key, value] of Object.entries(montharar)) {
             console.log(key, value);
             // eslint-disable-next-line no-loop-func
+
             $(".rmdp-header-values span:first-child").each(function(index) {
                 // alert(index + ": " +   $(this).text().replaceAll(',', ''));
                  if(key ==  $(this).text().replaceAll(',', '')){
                     dataa = key;
-                 }
-              
+                }
              }) 
           }
-     
-          //alert(data);
-           var array = [];
+          /*        ANMOL        */
+        var test = [];
+
+        $(".rmdp-panel-body li span").each(function(index) {
+
+            test.push($(this).text());
+
+        })  
+        test.forEach(function(i, idx, test){
+            if (idx === test.length - 1){ 
+                data = test
+            }
+         });
+         console.warn(data);
+         var regExp = /\(([^)]+)\)/g;
+         var newTxt = data.toString().split('(');
+         var new_data = [];
+         for (var i = 1; i < newTxt.length; i++) {
+            new_data.push(newTxt[i].split(')')[0]);
+         }
+         console.log(new_data)
+        const monthar = {January:1,February:2,March:3,April:4,May:5,June:6,July:7,August:8,September:9,October:10,November:11,December:12};
+        var dataa_new = [];
+        for (const [key, value] of Object.entries(monthar)) {
+            console.log(key, value);
+            // eslint-disable-next-line no-loop-func
+                // alert(index + ": " +   $(this).text().replaceAll(',', ''));
+                new_data.forEach(function(new_data){
+                    if(value ==  new_data){
+                        dataa_new.push(key);
+                    }
+                 });
+          }
+          console.warn(dataa_new);
+        // var string = test.toString()
+        // var string_split = string.split("/")
+        // console.warn(string_split);
+
+        // var products = [];
+        // var months = [];
+        // for (var i = 0; i < string_split.length; i += 2) {
+        //     products.push(string_split[i]);
+        //     string_split[i+1] && months.push(string_split[i + 1]);
+        // }
+        // console.warn(months);
+        // let unique_months = months.filter((item, i, ar) => ar.indexOf(item) === i);
+        // console.log(unique_months);
+        // const monthar = {January:1,February:2,March:3,April:4,May:5,June:6,July:7,August:8,September:9,October:10,November:11,December:12};
+        // var dataa_new = [];
+        // for (const [key, value] of Object.entries(monthar)) {
+        //     console.log(key, value);
+        //     // eslint-disable-next-line no-loop-func
+        //         // alert(index + ": " +   $(this).text().replaceAll(',', ''));
+        //         unique_months.forEach(function(unique_months){
+        //             if(value ==  unique_months){
+        //                 dataa_new.push(key);
+        //             }
+        //          });
+        //   }
+        //   console.warn(dataa_new);
+          /*        ANMOL        */
+
+
+
+        //   alert(dataa);
+          var array = [];
         $(".rmdp-selected .sd").each(function(index) {
             array.push($(this).text());
             //data += ' ' + $(this).text() + ',';
@@ -57,7 +122,9 @@ function Home() {
                 data = array
             }
          });
-         //alert(dataa);
+         
+        //  alert(array);
+        //  alert(dataa);
         $(".date_selectedmonth").text(dataa + ' :');
         $('.date_selectedmonth').show();
         $(".date_selected").text(data);
@@ -86,6 +153,7 @@ function Home() {
     
     $(document).on('click', '.date_selected', function () {
         $(this).hide();
+        $('.date_selectedmonth').hide();
         $('.selected-location').removeClass('active');
         $('.box3').fadeOut('1000');
         $('.box2').show();
