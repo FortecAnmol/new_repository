@@ -62,7 +62,11 @@ function Bookingstep2() {
             <div className='app'>
                 <div className='calendar-container' id='booking-calendar'>
                    { /* <Calendar onChange={setDate} value={date} /> */}
+
+                   <Calendar multiple format="YYYY/(MMMM/DD)" plugins={[<DatePanel  />]} minDate={new Date().setDate(dd)}/>
+
                    <Calendar multiple plugins={[<DatePanel  />]} minDate={new Date().setDate(dd)}/>
+
                  </div>
                 <div className="row bottom_btns no-gutters mx-0">
                    <div className="col-6 pr-2"><button type="button" className="btn previous">Back</button></div>
