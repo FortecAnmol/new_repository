@@ -27,7 +27,9 @@ function Home() {
     $(document).on('click', '.next', function () {
         var data = '';
         var dataa;
+
         // alert(dataa);
+
 
         if ($('.rmdp-selected').length == 2) {
             setShow(true);
@@ -55,6 +57,7 @@ function Home() {
         })  
         test.forEach(function(i, idx, test){
             if (idx === test.length - 1){ 
+
                 data = test
             }
          });
@@ -105,6 +108,12 @@ function Home() {
         //          });
         //   }
         //   console.warn(dataa_new);
+
+               
+                data = test
+            }
+         });
+
           /*        ANMOL        */
 
 
