@@ -61,7 +61,7 @@ function Home() {
                 data = test
             }
          });
-         console.warn(data);
+         console.log(data);
          var regExp = /\(([^)]+)\)/g;
          var newTxt = data.toString().split('(');
          var new_data = [];
@@ -69,19 +69,55 @@ function Home() {
             new_data.push(newTxt[i].split(')')[0]);
          }
          console.log(new_data)
-        const monthar = {January:1,February:2,March:3,April:4,May:5,June:6,July:7,August:8,September:9,October:10,November:11,December:12};
+         var string = new_data.toString()
+         var string_split = string.split("/").toString()
+         var string_split_new = string_split.split(",")
+         console.log(string_split_new);
+
+        let arr = [];
+
+        for (let i = 0; i < string_split_new.length; i += 2) {
+        arr.push({
+            [string_split_new[i]]: string_split_new[i + 1]
+        });
+        }
+        console.log(arr);
+                var targetObject = {};
+
+        for(var iloop=0; iloop< arr.length; iloop++){
+        //get the keys in your object
+        var objectKeys = Object.keys(arr[iloop]);
+
+        //loop over the keys of the object
+        for(var jloop=0; jloop<objectKeys.length; jloop++){
+            //if the key is present in your target object push in the array 
+            if( targetObject[ objectKeys[jloop] ] ){
+            targetObject[objectKeys[jloop]].push( arr[iloop][objectKeys[jloop]] );
+            }else{
+            // else create a array and push inside the value
+            targetObject[objectKeys[jloop]] = []
+            targetObject[objectKeys[jloop]].push( arr[iloop][objectKeys[jloop]]     );
+            }
+        }
+        }
+        console.log(targetObject)
         var dataa_new = [];
-        for (const [key, value] of Object.entries(monthar)) {
-            console.log(key, value);
-            // eslint-disable-next-line no-loop-func
-                // alert(index + ": " +   $(this).text().replaceAll(',', ''));
-                new_data.forEach(function(new_data){
-                    if(value ==  new_data){
-                        dataa_new.push(key);
-                    }
-                 });
-          }
-          console.warn(dataa_new);
+        var html = '<form>'
+        for (var [key, value] of Object.entries(targetObject)) {
+            dataa_new.push(key+':'+value+",");
+        }
+        console.log(dataa_new);
+        // const monthar = {January:1,February:2,March:3,April:4,May:5,June:6,July:7,August:8,September:9,October:10,November:11,December:12};
+        // var dataa_new = [];
+        // for (const [key, value] of Object.entries(monthar)) {
+        //     console.log(key, value);
+        //         new_data.forEach(function(new_data){
+        //             if(value ==  new_data){
+        //                 dataa_new.push(key);
+        //             }
+        //          });
+        //   }
+        //   console.log(dataa_new);
         // var string = test.toString()
         // var string_split = string.split("/")
         // console.warn(string_split);
@@ -134,9 +170,9 @@ function Home() {
          
         //  alert(array);
         //  alert(dataa);
-        $(".date_selectedmonth").text(dataa + ' :');
+        $(".date_selectedmonth").html(dataa_new);
         $('.date_selectedmonth').show();
-        $(".date_selected").text(data);
+        // $(".date_selected").text(data);
         $('.selected-location').addClass('active');
         $('.box3').fadeIn('1000');
         $('.date_selected').show();

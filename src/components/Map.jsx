@@ -135,11 +135,14 @@ class Map extends React.Component {
             console.log( position.coords.latitude );
             console.log( position.coords.longitude );
 			var method = 'GET';
-			var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=true&key=AIzaSyCXTkpYxVyKe1b4YEg2nwlszp1mme595ko';
+
+			var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=true&key=AIzaSyDWhEGkg1kxEv0jieGRZu7IneGbRgz-qrc';
+
 			var async = true;
 			fetch(url)
 			.then(response => response.json())
 			.then(data => console.log(data));
+
             //Set the myLocation variable with set to true, latittude, and longitude
             const newLocation = {
               set : true,

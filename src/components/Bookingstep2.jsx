@@ -63,9 +63,7 @@ function Bookingstep2() {
                 <div className='calendar-container' id='booking-calendar'>
                    { /* <Calendar onChange={setDate} value={date} /> */}
 
-                   <Calendar multiple format="YYYY/(MMMM/DD)" plugins={[<DatePanel  />]} minDate={new Date().setDate(dd)}/>
-
-                   <Calendar multiple plugins={[<DatePanel  />]} minDate={new Date().setDate(dd)}/>
+                   <Calendar multiple format="YYYY/(MMMM/D)" plugins={[<DatePanel  />]} minDate={new Date().setDate(dd)}/>
 
                  </div>
                 <div className="row bottom_btns no-gutters mx-0">
@@ -84,7 +82,7 @@ function Bookingstep2() {
         <>
             <div className="calendar_wrapper booking-box box2">
                 <div className="box-header">
-                    <div className="selected-location mb-3"><div> <span className='current-location'></span><span className='selected date_selectedmonth'></span> <span className='selected date_selected'>:</span></div></div>
+                    <div className="selected-location mb-3"><div> <span className='current-location'></span><span className='selected date_selectedmonth'></span> <span className='selected date_selected'></span></div></div>
                     <h1><span className='selectedTime'>Select the dates</span></h1>
                 </div>
                 <div className="box-body">
