@@ -111,10 +111,9 @@ function BookingForm() {
                 if(key ==  $(this).text().replaceAll(',', '')){
                    dataa = key;
                 }
-             
             }) 
          }
-         
+        //  alert(dataa);
          
         var fullm = [];
         var dataa_new_latest = [];
@@ -126,6 +125,10 @@ function BookingForm() {
                   fullm.push(value);
                 }
               });
+            // console.log(key, value);
+            if(dataa ===  key){
+                fullm =  value;
+            }
           }
           console.log(fullm);
           var arrayLength = fullm.length;

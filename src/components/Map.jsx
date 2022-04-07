@@ -107,6 +107,7 @@ class Map extends React.Component {
 				
 				});
 
+
 				this.getAddress();
 			},
 			(error) => {
@@ -134,7 +135,9 @@ class Map extends React.Component {
             console.log( position.coords.latitude );
             console.log( position.coords.longitude );
 			var method = 'GET';
+
 			var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=true&key=AIzaSyDWhEGkg1kxEv0jieGRZu7IneGbRgz-qrc';
+
 			var async = true;
 			fetch(url)
 			.then(response => response.json())
@@ -146,13 +149,15 @@ class Map extends React.Component {
               latitude : position.coords.latitude,
               longitude : position.coords.longitude
             }
-            // this.setState({ myLocation : newLocation });
+            //  this.setState({ myLocation : newLocation });
         }, 
         //if failure, this is called with error variable message printed
         (error) => {
             console.log( error.message );
-        }
+        },
+
     );
+	
   }
 	
 	render() {
@@ -251,6 +256,8 @@ class Map extends React.Component {
 					</div> 
 							*/}
 					
+				
+							*/}
 				</LoadScript>
 			</>
 		);
