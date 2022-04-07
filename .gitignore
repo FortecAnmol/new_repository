@@ -2,3 +2,9 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+# Local Netlify folder
+.netlify
+# Using wildcards
+*.extension
+*.zip
+*.sql

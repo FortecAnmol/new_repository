@@ -23,8 +23,8 @@ function BookingForm() {
    localStorage.clear();
    window.location.reload();
   }
-
     function handleSubmit(event) {
+      
         event.preventDefault();
        // console.log(name +  email + phone +  message);
        setShowp(true);
@@ -32,7 +32,76 @@ function BookingForm() {
        var numberofcloth  = localStorage.getItem('numberofcloth');
        var newAddress = localStorage.getItem('newAddress');
        var time = localStorage.getItem('time');
+       var data = '';
        var dataa;
+                 /*        ANMOL        */
+                 var test = [];
+                 $(".rmdp-panel-body li span").each(function(index) {
+                     test.push($(this).text());
+         
+                 })  
+                 test.forEach(function(i, idx, test){
+                     if (idx === test.length - 1){ 
+                         data = test
+                     }
+                  });
+                  console.log(data);
+                  var regExp = /\(([^)]+)\)/g;
+                  var newTxt = data.toString().split('(');
+                  var new_data = [];
+                  for (var i = 1; i < newTxt.length; i++) {
+                     new_data.push(newTxt[i].split(')')[0]);
+                  }
+                  console.log(new_data)
+                  var string = new_data.toString()
+                  var string_split = string.split("/").toString()
+                  var string_split_new = string_split.split(",")
+                  console.log(string_split_new);
+                  var products = [];
+                  var months = [];
+                  for (var i = 0; i < string_split_new.length; i += 2) {
+                      products.push(string_split_new[i]);
+                      string_split_new[i+1] && months.push(string_split_new[i + 1]);
+                  }
+                  console.log(months);
+                  console.log(products);
+       
+                  let unique_months = products.filter((item, i, ar) => ar.indexOf(item) === i);
+                  console.log(unique_months);
+                 let arr = [];
+
+                 for (let i = 0; i < string_split_new.length; i += 2) {
+                 arr.push({
+                     [string_split_new[i]]: string_split_new[i + 1]
+                 });
+                 }
+                 console.log(arr);
+                         var targetObject = {};
+         
+                 for(var iloop=0; iloop< arr.length; iloop++){
+                 //get the keys in your object
+                 var objectKeys = Object.keys(arr[iloop]);
+         
+                 //loop over the keys of the object
+                 for(var jloop=0; jloop<objectKeys.length; jloop++){
+                     //if the key is present in your target object push in the array 
+                     if( targetObject[ objectKeys[jloop] ] ){
+                     targetObject[objectKeys[jloop]].push( arr[iloop][objectKeys[jloop]] );
+                     }else{
+                     // else create a array and push inside the value
+                     targetObject[objectKeys[jloop]] = []
+                     targetObject[objectKeys[jloop]].push( arr[iloop][objectKeys[jloop]]     );
+                     }
+                 }
+                 }
+                 console.log(targetObject)
+                 var dataa_new = [];
+                 var html = '<form>'
+                 for (var [key, value] of Object.entries(targetObject)) {
+                     dataa_new.push(key+':'+value);
+                 }
+                 console.log(dataa_new);
+                   /*        ANMOL        */
        const monthararr = {January:1,February:2,March:3,April:4,May:5,June:6,July:7,August:8,September:9,October:10,November:11,December:12};
        for (const [key, value] of Object.entries(monthararr)) {
            console.log(key, value);
@@ -47,18 +116,31 @@ function BookingForm() {
          }
          
          
-        var fullm;
+        var fullm = [];
+        var dataa_new_latest = [];
         const montharar = {January:1,February:2,March:3,April:4,May:5,June:6,July:7,August:8,September:9,October:10,November:11,December:12};
         for (const [key, value] of Object.entries(montharar)) {
             console.log(key, value);
-            if(dataa ===  key){
-                fullm =  value;
-            }
+            unique_months.forEach(function(unique_months){
+                if(key ==  unique_months){
+                  fullm.push(value);
+                }
+              });
           }
+          console.log(fullm);
+          var arrayLength = fullm.length;
+          for (var i = 0; i < arrayLength; i++) {
+              console.log(fullm[i]);
+              var mothns = fullm[i];
+
+              //Do something
+          }
+          console.log(dataa);
 
           const d = new Date();
           let year = d.getFullYear();
 
+          
 
           function getTimeZone() {
             var offset = new Date().getTimezoneOffset(),
@@ -70,8 +152,9 @@ function BookingForm() {
        
         $('.rmdp-selected .sd ').each(function(index,item){
          //alert(time.split(" ")[0]);
-       var bookingdate = year+"-"+fullm+"-"+$(item).html()+"T"+time.split(" ")[0]+":00-0400";
-       // alert(bookingdate);
+      for(var i = 0; i < arrayLength; i++){
+      var bookingdate = year+"-"+fullm[i]+"-"+$(item).html()+"T"+time.split(" ")[0]+":00-0400";
+        console.log(bookingdate);
         var axios = require('axios');
         var FormData = require('form-data');
         var data = new FormData();
@@ -83,7 +166,7 @@ function BookingForm() {
         data.append('notes', message);
         data.append('email', email);
         data.append('location', newAddress);
-
+        console.log(data);
         var config = {
         method: 'post',
         url: 'https://fortecsalesforce.com/laundary/book.php',
@@ -100,8 +183,10 @@ function BookingForm() {
         .catch(function (error) {
         console.log(error);
         });
+      }
 
       }); 
+      
      
     }
    

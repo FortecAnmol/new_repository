@@ -231,7 +231,7 @@ class Map extends React.Component {
 							
 						)}
 					</PlacesAutocomplete>
-					
+					{/*
 					 <div className='App__Address'>
 						{this.state.address.length === 0
 							? "This Site request a location Access,Enable it to get your current Location"
@@ -249,7 +249,7 @@ class Map extends React.Component {
 								: "click here to copy"}
 						</div>
 					</div> 
-				
+							*/}
 					
 				</LoadScript>
 			</>
